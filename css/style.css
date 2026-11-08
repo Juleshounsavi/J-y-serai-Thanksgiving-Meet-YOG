@@ -1,0 +1,315 @@
+/* =========================================================
+   J'y serai – Thanksgiving Meet YOG
+   Feuille de style unique, pensée "mobile first" :
+   les règles de base ciblent le téléphone, les @media en bas
+   adaptent ensuite pour les grands écrans.
+   ========================================================= */
+
+/* ---------- 1. Polices (hébergées sur le site, pas de Google Fonts) ---------- */
+@font-face { font-family: "Montserrat"; font-weight: 400; font-style: normal; font-display: swap;
+  src: url("../fonts/montserrat-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-weight: 600; font-style: normal; font-display: swap;
+  src: url("../fonts/montserrat-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Montserrat"; font-weight: 800; font-style: normal; font-display: swap;
+  src: url("../fonts/montserrat-latin-800-normal.woff2") format("woff2"); }
+@font-face { font-family: "Mrs Saint Delafield"; font-weight: 400; font-style: normal; font-display: swap;
+  src: url("../fonts/mrs-saint-delafield-latin-400-normal.woff2") format("woff2"); }
+
+/* ---------- 2. Couleurs prélevées sur l'affiche ---------- */
+:root {
+  --orange-deep: #FF6B06;   /* orange foncé (début des dégradés) */
+  --orange:      #FF7F07;   /* orange principal */
+  --amber:       #FFA605;   /* orange clair / ambre (fin des dégradés) */
+  --yellow:      #FFC100;   /* jaune du mot "Thanks" */
+  --cream:       #FBF1E2;   /* rayons clairs du fond */
+  --paper:       #FCF6F3;   /* rayons très clairs du fond */
+  --ink:         #1B1209;   /* noir chaud du texte */
+  --ink-soft:    #5A4636;   /* texte secondaire */
+  --link:        #B34700;   /* orange foncé lisible sur fond clair */
+  --white:       #FFFFFF;
+
+  --brand-gradient: linear-gradient(90deg, var(--orange-deep), var(--amber));
+  --radius: 18px;
+  --shadow: 0 10px 30px rgba(255, 107, 6, .18), 0 2px 6px rgba(27, 18, 9, .08);
+  --font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-script: "Mrs Saint Delafield", "Brush Script MT", cursive;
+}
+
+/* ---------- 3. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--cream);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Rayons du fond (comme sur l'affiche), fixés derrière le contenu */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: repeating-conic-gradient(from 0deg at 50% 30%, var(--cream) 0deg 7.5deg, var(--paper) 7.5deg 15deg);
+}
+
+img { max-width: 100%; height: auto; }
+a { color: var(--link); }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+
+.sr-only {                       /* caché à l'écran, lisible par les lecteurs d'écran */
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: 8px; top: -60px; z-index: 10;
+  background: var(--ink); color: var(--white); padding: 10px 14px; border-radius: 8px;
+}
+.skip-link:focus { top: 8px; }
+
+[hidden] { display: none !important; }
+
+/* ---------- 4. En-tête et pied de page ---------- */
+.site-header { display: flex; justify-content: center; padding: 18px 16px 0; }
+.logo {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 8px 14px;
+  box-shadow: var(--shadow);
+}
+
+.wrap {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 8px 16px 32px;      /* 16px de marge latérale : jamais de défilement horizontal */
+  flex: 1;
+}
+
+.site-footer {
+  text-align: center;
+  font-size: .85rem;
+  color: var(--ink-soft);
+  padding: 16px 16px 28px;
+}
+.site-footer p { margin: 0 0 4px; }
+.site-footer a { padding: 6px 4px; display: inline-block; }
+
+/* ---------- 5. Présentation ---------- */
+.hero { text-align: center; padding-top: 12px; }
+
+.hero-title {
+  margin: 0;
+  line-height: .88;
+  font-weight: 800;
+  letter-spacing: -.045em;
+  font-size: clamp(3rem, 15vw, 5rem);
+}
+.hero-thanks, .hero-giving {
+  display: block;
+  background: linear-gradient(90deg, var(--yellow), var(--orange));
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+.hero-meet {
+  display: block;
+  font-family: var(--font-script);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--ink);
+  font-size: .8em;
+  line-height: .9;
+  margin-top: -.05em;
+}
+.script {
+  display: inline-block;
+  font-family: var(--font-script);
+  font-size: 2.1em;
+  line-height: .7;
+  margin: 0 .12em;
+  vertical-align: -.12em;
+  color: var(--ink);
+}
+
+.hero-lead { margin: 22px auto 0; line-height: 1.9; max-width: 34ch; color: var(--ink-soft); }
+.hero-lead strong { color: var(--ink); }
+
+.chips {
+  list-style: none; margin: 18px 0 0; padding: 0;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+}
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--white);
+  border: 2px solid var(--amber);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: .85rem; font-weight: 600;
+}
+.chip svg { color: var(--orange-deep); flex: none; }
+.chip-theme {
+  background: var(--brand-gradient);
+  border-color: transparent;
+  font-weight: 800;
+  border-radius: 10px;
+}
+.chip-label {
+  background: var(--white); border-radius: 5px; padding: 0 6px;
+  font-weight: 600; font-size: .75rem;
+}
+.countdown {
+  display: inline-block; margin: 14px 0 0;
+  font-weight: 800; color: var(--link);
+}
+
+/* ---------- 6. Carte de l'outil ---------- */
+.card {
+  margin-top: 22px;
+  background: var(--white);
+  border: 3px solid transparent;
+  background-image: linear-gradient(var(--white), var(--white)), var(--brand-gradient);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;      /* bordure en dégradé orange → ambre */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px 16px 20px;
+}
+
+/* Indicateur d'étapes */
+.stepper {
+  list-style: none; margin: 0 0 16px; padding: 0;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+}
+.stepper-item {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: .8rem; font-weight: 600; color: var(--ink-soft);
+  padding: 6px 4px; border-radius: 999px; background: var(--paper);
+}
+.stepper-num {
+  display: inline-grid; place-items: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: #E9DCCB; font-size: .75rem; font-weight: 800; color: var(--ink);
+}
+.stepper-item.is-current { background: var(--brand-gradient); color: var(--ink); }
+.stepper-item.is-current .stepper-num { background: var(--white); }
+.stepper-item.is-done .stepper-num { background: var(--yellow); }
+
+.step-title { margin: 0 0 8px; font-size: 1.25rem; font-weight: 800; outline: none; }
+.note { margin: 10px 0; font-size: .88rem; color: var(--ink-soft); }
+.hint { margin: 8px 0 0; font-size: .85rem; color: var(--ink-soft); }
+
+.status {
+  margin: 0 0 12px; padding: 10px 12px; border-radius: 10px;
+  background: #FFE9D6; border: 2px solid var(--orange-deep); font-weight: 600; font-size: .9rem;
+}
+.warning {
+  margin: 10px 0; padding: 10px 12px; border-radius: 10px;
+  background: #FFF4CC; border: 2px solid var(--yellow); font-size: .88rem;
+}
+
+/* ---------- 7. Boutons (zones tactiles >= 48px) ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 12px 20px;
+  font: inherit; font-weight: 800; text-align: center; text-decoration: none;
+  border-radius: 14px; border: 2px solid transparent;
+  cursor: pointer; color: var(--ink);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:active { transform: scale(.98); }
+.btn-primary { background: var(--brand-gradient); box-shadow: 0 6px 14px rgba(255, 107, 6, .3); }
+.btn-secondary { background: var(--white); border-color: var(--amber); }
+.btn-big { width: 100%; font-size: 1.05rem; }
+.sr-only:focus-visible + .btn { outline: 3px solid var(--ink); outline-offset: 3px; }   /* focus clavier sur l'input caché */
+
+.actions { display: grid; gap: 10px; margin-top: 14px; }
+
+/* ---------- 8. Étape 1 : zone de dépôt ---------- */
+.dropzone {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  gap: 10px; padding: 26px 16px;
+  border: 3px dashed var(--amber); border-radius: var(--radius);
+  background: var(--paper); color: var(--orange-deep);
+}
+.dropzone.is-over { background: #FFE9D6; border-color: var(--orange-deep); }
+
+/* ---------- 9. Étape 2 : recadrage ---------- */
+.stage-wrap { display: flex; justify-content: center; margin-top: 8px; }
+.stage {
+  /* Même proportions que la fenêtre photo de l'affiche (413 × 495), et jamais plus haute que 62% de l'écran */
+  width: min(100%, calc(62vh * 413 / 495));
+  width: min(100%, calc(62dvh * 413 / 495));
+  aspect-ratio: 413 / 495;
+  background: #2a2118;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+.stage img { display: block; max-width: 100%; }
+
+.zoom { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.zoom-label { font-weight: 600; font-size: .9rem; }
+#zoom-range { flex: 1; height: 32px; accent-color: var(--orange); }
+
+/* Cropper.js : cadre de découpe aux couleurs de l'affiche */
+.cropper-view-box { outline: 2px solid var(--orange); outline-color: rgba(255, 127, 7, .9); }
+.cropper-modal { background-color: #000; opacity: .45; }
+
+/* ---------- 10. Étape 3 : résultat ---------- */
+.result-wrap { margin-top: 8px; }
+.result-image {
+  display: block; width: 100%; aspect-ratio: 1 / 1;
+  border-radius: 12px; border: 2px solid var(--cream);
+  background: var(--paper);
+  -webkit-touch-callout: default;      /* garde le menu "Enregistrer l'image" (appui long) sur iPhone */
+  user-select: none;
+}
+
+.caption { margin-top: 18px; display: grid; gap: 8px; }
+.caption-label { font-weight: 600; font-size: .9rem; }
+.caption textarea {
+  width: 100%; font: inherit; font-size: .9rem; color: var(--ink);
+  padding: 10px 12px; border: 2px solid var(--amber); border-radius: 12px;
+  background: var(--paper); resize: vertical;
+}
+.actions-secondary { margin-top: 18px; }
+
+/* ---------- 11. Pages légales ---------- */
+.legal { background: var(--white); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px 18px 24px; margin-top: 18px; }
+.legal h1 { font-size: 1.6rem; font-weight: 800; margin: 0 0 6px; }
+.legal h2 { font-size: 1.1rem; font-weight: 800; margin: 24px 0 6px; color: var(--link); }
+.legal p, .legal li { font-size: .95rem; }
+.legal ul { padding-left: 1.2rem; }
+.legal .updated { color: var(--ink-soft); font-size: .85rem; margin: 0 0 8px; }
+.legal dl { margin: 8px 0; }
+.legal dt { font-weight: 600; margin-top: 8px; }
+.legal dd { margin: 0 0 0 0; }
+.back-link { display: inline-block; margin-top: 16px; padding: 8px 0; font-weight: 600; }
+
+/* Zone à compléter : volontairement très visible pour ne pas l'oublier */
+mark.todo { background: #FFF200; color: #000; padding: 0 4px; border-radius: 4px; font-weight: 600; }
+
+/* ---------- 12. Grands écrans ---------- */
+@media (min-width: 720px) {
+  .wrap { max-width: 600px; padding-top: 16px; }
+  .card { padding: 24px 24px 28px; }
+  .actions { grid-template-columns: 1fr 1fr; }
+  .actions .btn-big:only-child { grid-column: 1 / -1; }
+  .legal { padding: 28px 32px 32px; }
+}
+
+/* Respecte le réglage "réduire les animations" du système */
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+  .btn:active { transform: none; }
+}
