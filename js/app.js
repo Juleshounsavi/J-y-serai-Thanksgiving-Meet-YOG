@@ -34,10 +34,10 @@ const CONFIG = {
 
   shareTitle: "J'y serai – Thanksgiving Meet YOG",
   shareText:
-    "🙏 J'y serai ! Thanksgiving Meet YOG\n" +
+    "Je serai au Thanksgiving Meet YOG\n" +
     "📅 Dimanche 06.12.26 à 14h30 GMT\n" +
     "📍 Jardin public 2 Février\n" +
-    "✨ Thème : The life\n" +
+    "Thème : The life\n" +
     "Viens prier, louer Dieu et partager un repas avec nous !\n" +
     "#ThanksgivingMeet #YOG #JySerai",
 };
